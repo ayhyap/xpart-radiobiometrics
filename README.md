@@ -30,20 +30,20 @@ During or after this process you should be able to build a list of image file na
 
 # 3. Metadata processing
 Running the training script (main.py) requires a csv file containing the following columns:
--src_subject_id: the ID of the subject in the image
--file: the file name of the image as saved on your system. Can be in subdirectories as long as you supply the correct top-level directory in globals.json
--exam: the body part imaged. This is hard-coded to be one of {'AP Pelvis','Bilateral PA Fixed Flexion Knee','PA Bilateral Hand','PA Right Hand'}, case-sensitive.
--xval_split: the cross-validation split of the image. In our case we perform 4-fold cross validation, testing folds 0-3 inclusive on images marked with the corresponding split number.
+- src_subject_id: the ID of the subject in the image
+- file: the file name of the image as saved on your system. Can be in subdirectories as long as you supply the correct top-level directory in globals.json
+- exam: the body part imaged. This is hard-coded to be one of {'AP Pelvis','Bilateral PA Fixed Flexion Knee','PA Bilateral Hand','PA Right Hand'}, case-sensitive.
+- xval_split: the cross-validation split of the image. In our case we perform 4-fold cross validation, testing folds 0-3 inclusive on images marked with the corresponding split number.
 
 Performing subgroup analysis requires these additional columns:
--interview_age: the age of the imaged subject in years
--sex: the gender of the imaged subject
--race: the race of the image subject, mapped to integer values: 0 (other), 1 (white/caucasian), 2 (black/african american), 3 (asian), or '' (blank) if not provided
+- interview_age: the age of the imaged subject in years
+- sex: the gender of the imaged subject
+- race: the race of the image subject, mapped to integer values: 0 (other), 1 (white/caucasian), 2 (black/african american), 3 (asian), or '' (blank) if not provided
 
 Performing linear probe analysis requires all of the above columns, and the following:
--KL_max: the maximum KL grade recorded for a Knee x-ray, between the two knees. Ranges from 0 to 4, blank if not available or invalid.
--knee_prosthesis: the presence of any visible prosthetic in the knee x-ray. 0 or 1, blank if invalid.
--pelvis_prosthesis: the presence of any visible prosthetic in the pelvis x-ray. 0 or 1, blank if invalid.
+- KL_max: the maximum KL grade recorded for a Knee x-ray, between the two knees. Ranges from 0 to 4, blank if not available or invalid.
+- knee_prosthesis: the presence of any visible prosthetic in the knee x-ray. 0 or 1, blank if invalid.
+- pelvis_prosthesis: the presence of any visible prosthetic in the pelvis x-ray. 0 or 1, blank if invalid.
 
 Repeating what was said in the previous step, to reproduce the training process, data from OAI is required.
 OAI is hosted on the NIMH Data Archive (NDA), but is unavailable at time of writing.
@@ -58,16 +58,16 @@ If you do not have this file, but have all of the images available, it is also p
 You'll also want the enrollee demographics file 'oai_enrollee01' under demographics and x-ray outcomes also in NDA.
 
 Now create a new csv file which contains information for each x-ray image with the following columns (using these names as headers):
--src_subject_id: unchanged from image03, XRay**.txt, or enrolee**.txt
--interview_age: the interview_age from image03 or enrolee**.txt, divided by 12 and floored to give age in years
--sex: the gender column from image03 or enrolee**.txt
--race: the race column from enrolee**.txt joined using src_subject_id as a key, mapped to integer values: 0 (other), 1 (white/caucasian), 2 (black/african american), 3 (asian), or '' (blank) if not provided
--file: the file name of the image as saved on your system. Can be in subdirectories as long as you supply the correct top-level directory in globals.json
--exam: the image_description column from image03 or the V**EXAMTP from XRay**.txt
--xval_split: the src_subject_id column modulo 4
--KL_max: the max value from the KL column for the knee radiograph in kxr_sq_bu**.txt, blank if unavailable or invalid
--knee_prosthesis: from manual inspection: 1 if present, 0 if not, blank if not knee radiograph
--pelvis_prosthesis: from manual inspection: 1 if present, 0 if not, blank if not pelvis radiograph
+- src_subject_id: unchanged from image03, XRay**.txt, or enrolee**.txt
+- interview_age: the interview_age from image03 or enrolee**.txt, divided by 12 and floored to give age in years
+- sex: the gender column from image03 or enrolee**.txt
+- race: the race column from enrolee**.txt joined using src_subject_id as a key, mapped to integer values: 0 (other), 1 (white/caucasian), 2 (black/african american), 3 (asian), or '' (blank) if not provided
+- file: the file name of the image as saved on your system. Can be in subdirectories as long as you supply the correct top-level directory in globals.json
+- exam: the image_description column from image03 or the V**EXAMTP from XRay**.txt
+- xval_split: the src_subject_id column modulo 4
+- KL_max: the max value from the KL column for the knee radiograph in kxr_sq_bu**.txt, blank if unavailable or invalid
+- knee_prosthesis: from manual inspection: 1 if present, 0 if not, blank if not knee radiograph
+- pelvis_prosthesis: from manual inspection: 1 if present, 0 if not, blank if not pelvis radiograph
 
 # 4. Running the training script
 To reproduce the training procedure, run main.py
