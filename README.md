@@ -15,6 +15,9 @@ Set data paths in 'globals.json' to the relevant paths on your system.
 "image_dir" is the top directory containing your images. Images can be in subfolders as long as the path them is properly defined in the metadata csv.
 "metadata_csv" is a csv containing information about each image. See "3. Metadata processing" below.
 
+
+Our models are available in the 'Releases' page.
+
 # 2. Image processing
 To reproduce the training process, data from OAI is required.
 OAI is hosted on the NIMH Data Archive (NDA), but is unavailable at time of writing.
