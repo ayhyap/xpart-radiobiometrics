@@ -1,0 +1,8 @@
+{
+    "image_dir" : "path/to/image/top_directory",
+    "metadata_csv" : "path/to/image_metadata.csv",
+    "baseline_json" : "runs/baseline.json",
+    "dataloader_workers" : 3,
+	
+    "iterations_per_validation" : 1000
+}

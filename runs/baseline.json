@@ -1,0 +1,27 @@
+{
+    "seed" : 2024,
+    
+    "img_size" : 256,
+    
+    "batch_size" : 13,
+    "patient_image_limit" : 20,
+	
+    "optimizer" : "adam",
+    "weight_decay" : 0.0001,
+    "start_lr" : 0.001,
+    
+    "scheduler_import" : "from schedulers import StepLR",
+    "decay_factor" : 10,
+	"step_lengths" : [100,20,10],
+    "warmup_iterations" : 2000,
+	
+	"loss" : "ce",
+	"metric" : "L2",
+	"metric_scaler" : "batchnorm",
+	"margin" : 0,
+    
+    "model" : "densenet121",
+    "pretrained" : true,
+    
+	"feat_dim" : 1024
+}
